@@ -4,8 +4,8 @@
 
 int main(int argc, char** args) { 
 
-    typeTimers tp = POM;
-    CreateTimer(13, tp);
+    CreatePomodoro(12, 1, 1);
+    CreateTimer(13);
 
     return 0;
 }

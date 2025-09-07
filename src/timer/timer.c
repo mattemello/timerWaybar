@@ -2,11 +2,34 @@
 #include <stdlib.h>
 #include "timer.h"
 
-timer valueTimer;
+timerSetting valueTimer = {UNDEFINED};
 
-void CreateTimer(int time, typeTimers tp) {
-    valueTimer.timeWait = time;
-    valueTimer.typeTimer = tp;
+void CreateTimer(int time) {
+    if(valueTimer.typeTimer != UNDEFINED) {
+        printf("ERROR - you are in the wrong time function\n"); 
+        exit(1);
+    }
 
-    printf("%d \n%d\n", valueTimer.timeWait, valueTimer.typeTimer);
+    valueTimer.typeTimer = TIM;
+
+    timer tim;
+    tim.timer = time;
+
+    valueTimer.value.timer = tim;
+
+    printf("%d\n", valueTimer.value); 
+
+}
+
+void CreatePomodoro(int time, int pause, int repetition) {
+    if(valueTimer.typeTimer != UNDEFINED) {
+        printf("ERROR - you are in the wrong time function\n"); 
+        exit(1);
+    }
+   valueTimer.typeTimer = POM;
+
+    pomodoro pom = {time, pause, repetition};
+    
+    valueTimer.value.pomodoro = pom;
+    printf("%d\n", valueTimer.value.pomodoro.pause); 
 }
